@@ -13,30 +13,39 @@ function initCaptionModule() {
   const btnCopy = document.getElementById('btnCopy');
   const btnGenerateAgain = document.getElementById('btnGenerateAgain');
 
+  // Render backend URL
+  const API_BASE_URL = 'https://image-caption-generator-uj0o.onrender.com';
+
   if (!generateBtn) return;
 
   async function triggerCaptionGeneration() {
     const file = window.selectedImageFile;
 
     if (!file) {
-      if (window.showAlert) window.showAlert('Please select or upload an image first.');
+      if (window.showAlert) {
+        window.showAlert('Please select or upload an image first.');
+      }
       return;
     }
 
     const style = styleSelect ? styleSelect.value : 'Social';
-    const additionalContext = additionalContextInput ? additionalContextInput.value.trim() : '';
+    const additionalContext = additionalContextInput
+      ? additionalContextInput.value.trim()
+      : '';
 
     setLoading(true);
+
     if (window.clearAlert) window.clearAlert();
     if (resultCard) resultCard.classList.add('hidden');
 
     try {
       const formData = new FormData();
+
       formData.append('image', file);
       formData.append('style', style);
       formData.append('additionalContext', additionalContext);
 
-      const response = await fetch('/api/caption', {
+      const response = await fetch(`${API_BASE_URL}/api/caption`, {
         method: 'POST',
         body: formData
       });
@@ -44,7 +53,10 @@ function initCaptionModule() {
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        throw new Error(data.message || 'Unable to generate caption. Please verify your AI model configuration.');
+        throw new Error(
+          data.message ||
+          'Unable to generate caption. Please verify your AI model configuration.'
+        );
       }
 
       if (captionOutput) {
@@ -53,13 +65,23 @@ function initCaptionModule() {
 
       if (resultCard) {
         resultCard.classList.remove('hidden');
-        resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        resultCard.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
       }
+
     } catch (error) {
       console.error('[VisionCaption Error]:', error);
+
       if (window.showAlert) {
-        window.showAlert(error.message || 'An error occurred during caption generation. Please try again.');
+        window.showAlert(
+          error.message ||
+          'An error occurred during caption generation. Please try again.'
+        );
       }
+
     } finally {
       setLoading(false);
     }
@@ -68,25 +90,43 @@ function initCaptionModule() {
   generateBtn.addEventListener('click', triggerCaptionGeneration);
 
   if (btnGenerateAgain) {
-    btnGenerateAgain.addEventListener('click', triggerCaptionGeneration);
+    btnGenerateAgain.addEventListener(
+      'click',
+      triggerCaptionGeneration
+    );
   }
 
   if (btnCopy) {
     btnCopy.addEventListener('click', async () => {
-      const textToCopy = captionOutput ? captionOutput.textContent : '';
+      const textToCopy = captionOutput
+        ? captionOutput.textContent
+        : '';
+
       if (!textToCopy) return;
 
       try {
         await navigator.clipboard.writeText(textToCopy);
-        if (window.showToast) window.showToast('Caption copied to clipboard!');
+
+        if (window.showToast) {
+          window.showToast('Caption copied to clipboard!');
+        }
+
       } catch (err) {
         const temp = document.createElement('textarea');
+
         temp.value = textToCopy;
+
         document.body.appendChild(temp);
+
         temp.select();
+
         document.execCommand('copy');
+
         document.body.removeChild(temp);
-        if (window.showToast) window.showToast('Caption copied to clipboard!');
+
+        if (window.showToast) {
+          window.showToast('Caption copied to clipboard!');
+        }
       }
     });
   }
@@ -94,14 +134,33 @@ function initCaptionModule() {
   function setLoading(isLoading) {
     if (isLoading) {
       generateBtn.disabled = true;
-      if (btnGenerateAgain) btnGenerateAgain.disabled = true;
-      if (btnText) btnText.textContent = 'Generating caption...';
-      if (btnSpinner) btnSpinner.classList.remove('hidden');
+
+      if (btnGenerateAgain) {
+        btnGenerateAgain.disabled = true;
+      }
+
+      if (btnText) {
+        btnText.textContent = 'Generating caption...';
+      }
+
+      if (btnSpinner) {
+        btnSpinner.classList.remove('hidden');
+      }
+
     } else {
       generateBtn.disabled = false;
-      if (btnGenerateAgain) btnGenerateAgain.disabled = false;
-      if (btnText) btnText.textContent = 'Generate Caption';
-      if (btnSpinner) btnSpinner.classList.add('hidden');
+
+      if (btnGenerateAgain) {
+        btnGenerateAgain.disabled = false;
+      }
+
+      if (btnText) {
+        btnText.textContent = 'Generate Caption';
+      }
+
+      if (btnSpinner) {
+        btnSpinner.classList.add('hidden');
+      }
     }
   }
 }
