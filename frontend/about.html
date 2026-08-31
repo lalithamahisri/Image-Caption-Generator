@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about VisionCaption, how image captioning works with AI, and its real-world applications." />
+  <title>VisionCaption | About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">AI</span>
+        <span>VisionCaption</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="generate.html" class="nav-link">Generate</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container about-section">
+    <div class="page-header">
+      <h1 class="page-title">About VisionCaption</h1>
+      <p class="page-subtitle">Understanding the technology, image processing pipeline, and applications behind AI visual captioning.</p>
+    </div>
+
+    <div class="card about-card">
+      <h2>🔍 What is Image Caption Generation?</h2>
+      <p>
+        Image Caption Generation is a machine learning process that automatically translates visual information in a picture into natural language sentences. It combines two core pillars of Artificial Intelligence:
+      </p>
+      <p>
+        <strong>1. Computer Vision (CV):</strong> Analyzes pixels, identifies objects, detects facial expressions, recognizes spatial relationships, and maps out the environment.<br />
+        <strong>2. Natural Language Processing (NLP):</strong> Translates those detected visual concepts into coherent, grammatically structured sentences that humans can easily read and understand.
+      </p>
+    </div>
+
+    <div class="card about-card">
+      <h2>⚙️ How the Uploaded Image is Processed</h2>
+      <p>
+        When you submit an image in VisionCaption:
+      </p>
+      <ol style="padding-left: 1.25rem; color: var(--text-muted); line-height: 1.8;">
+        <li><strong>Client Upload:</strong> The image file is validated in your browser (format & size) and sent to the server via a secure multipart request.</li>
+        <li><strong>Server Dispatch:</strong> Node.js and Express receive the image data and route it to <code>captionService.js</code>.</li>
+        <li><strong>AI Vision Analysis:</strong> The vision model processes the raw image bytes to recognize visible subjects, their interactions, and background details according to your chosen style.</li>
+        <li><strong>Response & Immediate Deletion:</strong> The generated caption is returned to your screen, and the temporary image file is permanently deleted from the server to protect your privacy.</li>
+      </ol>
+    </div>
+
+    <div class="card about-card">
+      <h2>🌍 Practical Applications</h2>
+      <div class="features-grid" style="margin-top: 1rem; margin-bottom: 0;">
+        <div class="feature-card">
+          <h3 class="feature-title">♿ Web Accessibility</h3>
+          <p class="feature-desc">Provides accurate alternative text (Alt Text) for visually impaired users browsing with screen readers.</p>
+        </div>
+        <div class="feature-card">
+          <h3 class="feature-title">📱 Social Media</h3>
+          <p class="feature-desc">Generates quick, engaging captions and descriptions for photos and visual content posts.</p>
+        </div>
+        <div class="feature-card">
+          <h3 class="feature-title">🎓 Education & Assistive Tech</h3>
+          <p class="feature-desc">Helps students and assistive devices describe diagrams, historical photographs, and environmental scenes.</p>
+        </div>
+        <div class="feature-card">
+          <h3 class="feature-title">🗂️ Image Search & Cataloging</h3>
+          <p class="feature-desc">Enables smart text-based searching inside large photo libraries and digital asset management systems.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card about-card">
+      <h2>💻 Technologies Used</h2>
+      <p>This project is built using modern, clean web fundamentals and a modular server architecture:</p>
+      <div class="tech-grid">
+        <div class="tech-badge">HTML5 Semantic Elements</div>
+        <div class="tech-badge">Vanilla CSS3 & Flexbox</div>
+        <div class="tech-badge">JavaScript (ES6+)</div>
+        <div class="tech-badge">Node.js Runtime</div>
+        <div class="tech-badge">Express.js Framework</div>
+        <div class="tech-badge">Multer File Middleware</div>
+        <div class="tech-badge">AI Vision Models / APIs</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 VisionCaption. Built for AI & Computer Vision demonstration.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="generate.html">Generate</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

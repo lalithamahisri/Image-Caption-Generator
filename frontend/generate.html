@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Generate ready-to-publish social media, blog, and creative captions for your images with VisionCaption." />
+  <title>VisionCaption | Generate Caption</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">AI</span>
+        <span>VisionCaption</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="generate.html" class="nav-link active">Generate</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container generate-page-wrapper">
+    <div class="page-header">
+      <h1 class="page-title">Generate Caption</h1>
+      <p class="page-subtitle">Upload your photo to generate ready-to-post captions for social media, blogs, and websites.</p>
+    </div>
+
+    <div class="card">
+      <div class="upload-box" id="uploadBox">
+        <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg, image/webp" hidden />
+        <div class="upload-icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+        </div>
+        <h3 class="upload-heading">Upload Your Image</h3>
+        <p class="upload-hint">Click to browse or drag and drop here (JPG, JPEG, PNG, WEBP &bull; Max 10MB)</p>
+      </div>
+
+      <div class="preview-container hidden" id="previewContainer">
+        <div class="preview-image-wrapper">
+          <img id="previewImage" class="preview-image" src="" alt="Selected image preview" />
+        </div>
+        <div class="preview-meta">
+          <div class="file-details">
+            <span class="file-name" id="fileName">image.jpg</span>
+            <span class="file-size" id="fileSize">0 KB</span>
+          </div>
+          <button type="button" class="btn-remove" id="btnRemove">Remove</button>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-field">
+          <label for="styleSelect" class="form-label">Caption Style</label>
+          <select id="styleSelect" class="form-select">
+            <option value="Social" selected>🎉 Social Media (Instagram / TikTok / X - with emojis & tags)</option>
+            <option value="Blog">📖 Blog & Storytelling (Inspiring, descriptive narrative)</option>
+            <option value="Short">🔥 Short & Punchy (Witty one-liner)</option>
+            <option value="Professional">💼 Professional (LinkedIn / Editorial / Brand)</option>
+            <option value="Accessibility">♿ Accessibility (Detailed Alt-Text description)</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="additionalContext" class="form-label">Additional Context (Optional)</label>
+          <input 
+            type="text" 
+            id="additionalContext" 
+            class="form-input" 
+            placeholder="e.g., trekking in forest, birthday celebration, coffee morning"
+          />
+        </div>
+      </div>
+
+      <div class="alert alert-danger hidden" id="alertBox"></div>
+
+      <button type="button" id="generateBtn" class="btn btn-primary btn-generate" disabled>
+        <span class="btn-text">Generate Caption</span>
+        <span class="spinner hidden" id="btnSpinner"></span>
+      </button>
+    </div>
+
+    <div class="result-card hidden" id="resultCard">
+      <div class="result-title">Generated Caption</div>
+      <p class="caption-output" id="captionOutput" style="white-space: pre-wrap;">
+        "Caption will appear here."
+      </p>
+
+      <div class="result-actions">
+        <button type="button" id="btnCopy" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span>Copy Caption</span>
+        </button>
+
+        <button type="button" id="btnGenerateAgain" class="btn btn-outline">
+          Generate Again
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast hidden" id="toast">Caption copied to clipboard!</div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 VisionCaption. Built for AI & Computer Vision demonstration.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="generate.html">Generate</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/upload.js"></script>
+  <script src="js/caption.js"></script>
+</body>
+</html>
